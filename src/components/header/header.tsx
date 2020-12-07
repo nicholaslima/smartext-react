@@ -12,8 +12,6 @@ import { useAuth } from '../../context/AuthContext';
     return(
         <>
             <Container>
-
-                   
                     { !!user && (
                         <nav>
                             <Link to="/jogar">jogo</Link>

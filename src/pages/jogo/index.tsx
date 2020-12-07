@@ -5,7 +5,11 @@ import { Pontuacao,BlockBtns,Item,ItemTempo,BtnReiniciar,BtnEnviar,BtnExcluir } 
 import { Player,TextBlock,BtnTrocar,TextoTeste,TextoApi } from './style';
 import Header from '../../components/header/header';
 import { FiCheckCircle,FiRefreshCw,FiTrash } from 'react-icons/fi';
+import Confirm,{ ConfirmRef } from '../../components/confirm';
+
 import api from '../../config/api';
+
+
 
 interface TextoType{
     id: number;
@@ -21,12 +25,14 @@ const Jogo: React.FC = () => {
     const [ acertos,setAcertos ] = useState(0);
     const [ erros,setErros ] = useState(0);
     const [ tempo ,setTempo ] = useState(30);
-    const [ palavrasErradas,setPalavras ] =  useState(0);
+    const [ palavrasErradas,setPalavrasErradas ] =  useState(0);
+    const [ palavrasCertas,setPalavrasCertas] =  useState(0);
     const [ idTempo,setIdTempo ] =  useState();
     const [ disabledTextArea,setDisabledTextArea ] = useState(false);
     const [ textPlayer,setTextPlayer ] = useState('');
 
     const textPlayerRef = useRef<HTMLTextAreaElement>(null);
+    const confirmRef = useRef<ConfirmRef>(null);
 
     useEffect(() => {
         api.get('/texts/')
@@ -36,8 +42,7 @@ const Jogo: React.FC = () => {
                     setTextoAtual(response.data[0]);
                     setIndiceTexto(1);
                 }
-            }); 
-
+            });  
     });
 
     const TrocarTexto = useCallback( () => {
@@ -51,8 +56,9 @@ const Jogo: React.FC = () => {
         value++;
         setTextoAtual(textos[indiceTexto]);
         setIndiceTexto(value);
+        resetJogo();
         
-    },[indiceTexto,textos]);
+    },[indiceTexto,textos,resetJogo]);
 
     function calcularAcertoseErros(){
         const letrasPlayer = textPlayer.split('');
@@ -68,15 +74,18 @@ const Jogo: React.FC = () => {
             }
             setErros(erros);
             erros++;
+            return erros; 
         });
     }
+
 
     function calcularPalavrasAcertos(){
 
         const palavrasPlayer = textPlayer.split(' ');
         const palavrasTexto = textoAtual.conteudo.split(' ');
-        var num = 0;
-        
+        var erros = 0;
+        var acertos = 0;
+
         palavrasPlayer.map((palavra,key) => {
             
             if(palavra === ''){
@@ -84,20 +93,25 @@ const Jogo: React.FC = () => {
             }
 
             if(palavrasTexto[key] !== palavra){
-                num++;
-                setPalavras(num);
+                erros++;
+                setPalavrasErradas(erros);
+                return;
             }
+
+            acertos++;
+            setPalavrasCertas(acertos);
             return;
         })
-    }
+    };
 
-
+  
     function HandleCalcular(){
         PararContagem();
         setTempo(30);
         setDisabledTextArea(true);
         calcularPalavrasAcertos();
         calcularAcertoseErros();
+        openConfirm();
     }
 
 
@@ -109,7 +123,7 @@ const Jogo: React.FC = () => {
         setTextPlayer('');
         setAcertos(0);
         setErros(0);
-        setPalavras(0);
+        setPalavrasErradas(0);
         PararContagem();
         setTempo(30);
         setDisabledTextArea(false);
@@ -137,6 +151,11 @@ const Jogo: React.FC = () => {
         },1000);
     }
 
+    const openConfirm = useCallback(() => { 
+        confirmRef.current?.HandleOpenConfirm(); 
+    },[]);
+
+
     function PararContagem(){
         global.clearInterval(idTempo);
     }
@@ -162,7 +181,7 @@ const Jogo: React.FC = () => {
                             </TextBlock>
                             
                         </TextoApi>
-                        <textarea id="textoAluno"  ref={ textPlayerRef } disabled={ disabledTextArea }  value={ textPlayer } onFocus={contagem } onChange={ (e) => { setTextPlayer(e.target.value)} }></textarea>
+                        <textarea id="textoAluno"  style={{ resize: 'none' }} ref={ textPlayerRef } disabled={ disabledTextArea }  value={ textPlayer } onFocus={contagem } onChange={ (e) => { setTextPlayer(e.target.value)} }></textarea>
                 </Player>
                 
                 <BlockBtns>
@@ -178,6 +197,7 @@ const Jogo: React.FC = () => {
                             <FiCheckCircle size='22px'/>
                     </BtnEnviar>
                     <BtnExcluir className='btnPreto' style={{ marginRight: '10px' }} onClick={  apagarTexto  }  ><FiTrash size='22px' /></BtnExcluir>
+                    <Confirm ref={ confirmRef } acertos={ acertos } erros={ erros } message="salve sua pontuação"></Confirm>
                 </BlockBtns>    
 
                 <Pontuacao>
@@ -185,6 +205,12 @@ const Jogo: React.FC = () => {
                         <p className="subTitle" style={{ marginRight: '10px' }}>palavras erradas:</p>
                         <p id="textos">{ palavrasErradas }</p>
                     </Item>
+
+                    <Item>
+                        <p className="subTitle" style={{ marginRight: '10px' }}>palavras certas:</p>
+                        <p id="textos">{ palavrasCertas }</p>
+                    </Item>
+
 
                     <Item>
                         <p className="subTitle" style={{ marginRight: '10px' }}>acertos:</p>
@@ -201,7 +227,6 @@ const Jogo: React.FC = () => {
                         <p id="textos">{ indiceTexto }</p>
                     </Item>
                 </Pontuacao>
-
         </>
     )
 }

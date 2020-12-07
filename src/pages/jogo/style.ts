@@ -12,7 +12,7 @@ export const Pontuacao = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 600px;
+    width: 900px;
     margin: 0 auto;
 `;
 
