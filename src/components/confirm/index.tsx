@@ -64,7 +64,7 @@ const Confirm:React.ForwardRefRenderFunction<ConfirmRef,confirmType> = ({ messag
             });
             setVisible(false);
         }) 
-    },[acertos,erros]);
+    },[acertos,erros,ativarToast,token,user]);
 
 
     useImperativeHandle(ref,() => {

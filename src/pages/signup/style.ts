@@ -95,11 +95,13 @@ export const Container = styled.div`
 
 
 export const BtnVoltar = styled.button`
-    color: #8257E5;
+    background-color: #8257E5;
+    color: white;
+    border-radius: 5px;
     font-family: Fira Code;
     font-size: 18px;
     border: 0px solid white;
     a{
-        color: #8257E5;
+        color: white;
     }
 `;

@@ -45,7 +45,7 @@ const Jogo: React.FC = () => {
             });  
     });
 
-    const TrocarTexto = useCallback( () => {
+    function TrocarTexto(){
         var value = indiceTexto;
 
         if(textos[indiceTexto] === undefined){
@@ -57,8 +57,7 @@ const Jogo: React.FC = () => {
         setTextoAtual(textos[indiceTexto]);
         setIndiceTexto(value);
         resetJogo();
-        
-    },[indiceTexto,textos,resetJogo]);
+    }
 
     function calcularAcertoseErros(){
         const letrasPlayer = textPlayer.split('');
@@ -66,7 +65,8 @@ const Jogo: React.FC = () => {
         var acertos = 0;
         var erros = 0;
 
-        letrasPlayer.map((item,key) => {
+
+        letrasPlayer.forEach((item,key) => {
             if(letrasTexto[key] === item){
                 acertos++;
                 setAcertos(acertos);
@@ -74,7 +74,7 @@ const Jogo: React.FC = () => {
             }
             setErros(erros);
             erros++;
-            return erros; 
+            return; 
         });
     }
 
@@ -86,7 +86,7 @@ const Jogo: React.FC = () => {
         var erros = 0;
         var acertos = 0;
 
-        palavrasPlayer.map((palavra,key) => {
+        palavrasPlayer.forEach((palavra,key) => {
             
             if(palavra === ''){
                 return;
