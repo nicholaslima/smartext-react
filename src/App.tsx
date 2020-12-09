@@ -3,6 +3,9 @@ import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes/routes';
 import GlobalStyles from './styles/global';
 import  Provider  from '../src/context/index';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function App() {
   return (
