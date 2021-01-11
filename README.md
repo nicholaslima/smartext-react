@@ -88,8 +88,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Axios](https://www.npmjs.com/package/axios)
 - [Node](https://nodejs.org/en/)
 - [express](https://expressjs.com/pt-br/)
-  [knex](http://knexjs.org/)
-  [sqlite](https://www.sqlite.org/index.html)
+- [knex](http://knexjs.org/)
+- [sqlite](https://www.sqlite.org/index.html)
 
 
 ### Autor
