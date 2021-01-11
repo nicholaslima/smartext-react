@@ -1,44 +1,106 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<img src="https://img.shields.io/static/v1?label=log&message=smarttext&color=7159c1&style=for-the-badge&logo=ghost"/>
 
-In the project directory, you can run:
+<p align="center">
+    Acesse https://smartextapp.netlify.app/
+</p>
 
-### `yarn start`
+<h1 align="center">Smart Text</h1>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<div style="display: flex,flex-direction: row">
+    <img  style="border-radius: 5px"  src="src/assets/imgs/giphy.gif">
+    <img  style="border-radius: 5px"  src="src/assets/imgs/giphy2.gif">
+ </div>
+<h1>Sobre</h1>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Este projeto tem o propósito de fazer um teste de digitação do usuário retornando assim o resultado de erros acertos ,palavras erradas com tempo de 30 segundos para terminar o texto, e uma lista de textos para escrever,sendo possivel trocar de texto
 
-### `yarn test`
+Tabela de conteúdos
+=================
+<!--ts-->
+   * [funcionalidade](#funcionalidade)
+   * [Pre Requisitos](#Pre-requisitos)
+   * [como usar](#--como-usar)
+   * [Tecnologias](#-tecnologias)
+   * [Autor](#autor)
+   * [Licença](#Licenca)
+<!--te-->
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h3>Status</h3>
+<h4 align="center"> 
+ 🚀 Em construção...  🚧
+</h4>
 
-### `yarn build`
+### Funcionalidades
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] login de Acesso do Usuario
+- [x] salvar seus resultados e um relatório para visualizar seu histórico
+- [x] Lista de textos acessado pela api criada em node
+- [x] botões para trocar texto, reiniciar jogo, salvar resultado, apagar o texto, finalizar jogo
+- [x] mensagens dinãmicas para visualizar alertas do sistema
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Pré requisitos
 
-### `yarn eject`
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 🎲 como usar
+```bash
+# Clone este repositório
+$ git clone https://github.com/nicholaslima/smartext-react
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Acesse a pasta do projeto no terminal/cmd
+$ cd smartext-react
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Instale as dependências do projeto
+$ yarn 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# rode o projeto
+$ yarn start
 
-## Learn More
+# Clone este repositório da api
+$ git clone https://github.com/nicholaslima/api-smartText
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Acesse a pasta do projeto no terminal/cmd
+$ cd api-smartText
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Instale as dependências do projeto
+$ yarn 
+
+# rode o projeto
+$ yarn start
+
+
+# O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+
+```  
+
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [React](https://pt-br.reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Styled Components](https://styled-components.com/)
+- [Axios](https://www.npmjs.com/package/axios)
+- [Node](https://nodejs.org/en/)
+- [express](https://expressjs.com/pt-br/)
+  [knex](http://knexjs.org/)
+  [sqlite](https://www.sqlite.org/index.html)
+
+
+### Autor
+ 
+ Feito com ❤️ por Nicholas Lima 👋🏽 Entre em contato!
+
+- [Twitter](https://twitter.com/nichola58915429)
+- [Linkedin](https://www.linkedin.com/in/nicholas-lima-a360311bb/)
+
+
+### 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
